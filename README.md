@@ -2,6 +2,7 @@ AWS_lambda
 - Rule Engine에서 trigger 되어 base64로 encoding된 이미지를 디코딩하고 등록된 사용자와의 얼굴과 비교한다. 등록된 사용자면 AWS IoT Core에 true를 publish, 등록된 사용자가 아니라면 Lagnesia가 만든 SMTP 코드를 통해 이메일을 전송한다.
 
 Aws_image_upload.ino
+- esp32-cam에서 찍은 이미지를 AWS IoT Core에 publish한다.
 - https://github.com/leandrodamascena/aws-detect-a-cat
 - 위의 깃에서 arduino/iot-aws-core.ino에서 수정하여 만들었다.
 
