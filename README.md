@@ -12,3 +12,5 @@ Aws_switch_controller
 b64toImage.py, imagetobase64.py
 - 이미지와 base64 형태의 크기 확인 및 lambda test용 base64 데이터 생성 및 AWS IoT에 publish된 base64 데이터 디버깅용 코드
 
+survo.ino
+- AWS IoT Core에서 받은 payload로 서보모터를 작동해 스위치를 on/off한다.
