@@ -4,8 +4,12 @@
 #include <Arduino_JSON.h>
 
 AWS_IOT testButton;
+
+//WiFi 정보
 const char* ssid = "HelloWirelessDCD3";
 const char* password = "1707011241";
+
+//AWS IoT 정보
 char HOST_ADDRESS[] = "a3rrs47k7tk6a-ats.iot.ap-northeast-2.amazonaws.com"; 
 char CLIENT_ID[] = "jaewoo";
 char sTOPIC_NAME[] = "$aws/things/light_switch/shadow/update/delta"; // subscribe topic name
@@ -15,33 +19,31 @@ int status = WL_IDLE_STATUS;
 int msgCount=0, msgReceived = 0; 
 char payload[512];
 char rcvdPayload[512];
-//const int buttonPin = 15; // pushbutton pin unsigned long preMil = 0;
 const long intMil = 10000;
 unsigned long preMil = 0;
 
-static const int buttonPin = 15;
+// 서보모터 pin 정보
 static const int leftServoPin = 13;
 static const int rightServoPin = 12;
 Servo leftServo, rightServo;
 
-long lastDebounceTime = 0;
-long debounceDelay = 50;
-int lastButtonState = HIGH;
-int buttonState = HIGH;
-String lightState="OFF";
+String lightState = "OFF";
 
 void mySubCallBackHandler (char *topicName, int payloadLen, char *payLoad) {
-  strncpy(rcvdPayload,payLoad,payloadLen); 
+  strncpy(rcvdPayload, payLoad, payloadLen); 
   rcvdPayload[payloadLen] = 0; 
   msgReceived = 1;
 }
 
 void setup() {
+  // 시리얼 포트 오픈, 전송속도 설정
   Serial.begin(115200);
-  pinMode(buttonPin, INPUT);
+
+  // 서보모터 연결
   leftServo.attach(leftServoPin);
   rightServo.attach(rightServoPin);
 
+  // WiFi 연결
   Serial.println(WiFi.getMode());
   WiFi.disconnect(true);
   delay(1000);
@@ -56,6 +58,7 @@ void setup() {
   }
   Serial.println("Connected to wifi");
 
+  // AWS IoT 연결
   if(testButton.connect(HOST_ADDRESS,CLIENT_ID)== 0) { 
     Serial.println("Connected to AWS");
     delay(1000); 
@@ -70,15 +73,16 @@ void setup() {
     Serial.println("AWS connection failed, Check the HOST Address");
     while(1); 
   }
-  // initialize the pushbutton pin as an input pinMode(buttonPin, INPUT);
   delay(2000);
 }
 
 void loop() {
+  // 스위치 제어
   if(msgReceived == 1) {
     msgReceived = 0; 
     Serial.print("Received Message:"); 
     Serial.println(rcvdPayload);
+    
     // Parse JSON
     JSONVar myObj = JSON.parse(rcvdPayload); 
     JSONVar state = myObj["state"];
@@ -94,7 +98,8 @@ void loop() {
       offLight();
     }
   }
-  
+
+  // 시리얼 모니터에서 payload 출력
   if((millis()-preMil) > intMil) {
     // read the state of the pushbutton value if (digitalRead(buttonPin)) {
     preMil = millis();
@@ -109,54 +114,12 @@ void loop() {
     else
       Serial.println("Publish failed");
   }
-  /*
-  int reading = digitalRead(buttonPin);
-  if (reading != lastButtonState) {
-    lastDebounceTime = millis();
-  }
-  if ((millis() - lastDebounceTime) > debounceDelay) {
-    if (reading != buttonState) {
-      buttonState = reading;
-      if (reading == HIGH) {
-        pushButton();
-      }
-    }
-  }
-  lastButtonState = reading;
-  */
 }
-/*
-void pushButton() {
-  Serial.println("light on");
-  
-  for (int posDegrees = 0; posDegrees <= 45; posDegrees++) {
-    leftServo.write(posDegrees);
-    delay(20);
-  }
-  delay(50);
-  for (int posDegrees = 45; posDegrees >= 0; posDegrees--) {
-    leftServo.write(posDegrees);
-    delay(20);
-  }
 
-  delay(2000);
-  
-  Serial.println("light off");
-  for (int posDegrees = 130; posDegrees <= 160; posDegrees++) {
-    rightServo.write(posDegrees);
-    delay(20);
-  }
-  delay(50);
-  for (int posDegrees = 160; posDegrees >= 130; posDegrees--) {
-    rightServo.write(posDegrees);
-    delay(20);
-  }
-}
-*/
-
+// 스위치를 켜기 위한 서보모터 동작
 void onLight() {
   Serial.println("light on");
-  
+
   for (int posDegrees = 0; posDegrees <= 45; posDegrees++) {
     leftServo.write(posDegrees);
     delay(20);
@@ -168,8 +131,10 @@ void onLight() {
   }
 }
 
+// 스위치를 끄기 위한 서보모터 동작
 void offLight(){
   Serial.println("light off");
+
   for (int posDegrees = 130; posDegrees <= 160; posDegrees++) {
     rightServo.write(posDegrees);
     delay(20);
