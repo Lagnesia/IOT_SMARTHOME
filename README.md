@@ -4,7 +4,7 @@ AWS_lambda
 Aws_image_upload.ino
 - esp32-cam에서 찍은 이미지를 AWS IoT Core에 publish한다.
 - https://github.com/leandrodamascena/aws-detect-a-cat
-- 위의 깃에서 arduino/iot-aws-core.ino에서 수정하여 만들었다.
+- 위의 깃에서 arduino/iot-aws-core.ino를 수정하여 만들었다.
 
 Aws_switch_controller
 - 강의에서 제공된 코드를 수정하여 만든 light switch controller. 외부에서 사용을 위해 포트포워딩이 필요하다.
