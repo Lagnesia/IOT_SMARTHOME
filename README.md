@@ -7,7 +7,7 @@
 - 위의 깃에서 arduino/iot-aws-core.ino를 수정하여 만들었다.
 
 ### Aws_switch_controller
-- 강의에서 제공된 코드를 수정하여 만든 light switch controller. 외부에서 사용을 위해 포트포워딩이 필요하다.
+- 강의에서 제공된 코드를 수정하여 만든 light switch controller. Light Switch의 state desired를 publish한다.
 
 ### b64toImage.py, imagetobase64.py
 - 이미지와 base64 형태의 크기 확인 및 lambda test용 base64 데이터 생성 및 AWS IoT에 publish된 base64 데이터 디버깅용 코드
