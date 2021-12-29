@@ -2,8 +2,8 @@ import cv2
 import numpy as np
 import boto3
 
-Access_key_id = 'AKIAW2K2BC2PC23I2HRZ'
-Access_secret_key = 'ltKGykMJTEW/mxA4NoH7oilVCI+c8FpS5zdttF/p'
+Access_key_id = 'YourIdHere'
+Access_secret_key = 'YourKeyHere'
 bucket_id = 'family-face'
 
 face_classifier = cv2.CascadeClassifier('haarcascade_frontalface_default.xml')
