@@ -6,10 +6,10 @@
 
 // Replace with your network credentials
 #if SWAP
-  const char* ssid = "ESP32-AP";
-  const char* password = "123456789"; // password should be long!!
+  const char* ssid = "";
+  const char* password = ""; // password should be long!!
 #else
-  const char* ssid = "HelloWirelessDCD3";
+  const char* ssid = "";
   const char* password = "";    //your wifi password here
 #endif
 
