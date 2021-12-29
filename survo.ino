@@ -6,12 +6,12 @@
 AWS_IOT testButton;
 
 //WiFi 정보
-const char* ssid = "HelloWirelessDCD3";
-const char* password = "1707011241";
+const char* ssid = "";
+const char* password = "";
 
 //AWS IoT 정보
-char HOST_ADDRESS[] = "a3rrs47k7tk6a-ats.iot.ap-northeast-2.amazonaws.com"; 
-char CLIENT_ID[] = "jaewoo";
+char HOST_ADDRESS[] = ""; 
+char CLIENT_ID[] = "";
 char sTOPIC_NAME[] = "$aws/things/light_switch/shadow/update/delta"; // subscribe topic name
 char pTOPIC_NAME[] = "$aws/things/light_swtich/shadow/update"; // publish topic name
 
