@@ -12,7 +12,7 @@ from email.mime.image     import MIMEImage
 
 def lambda_handler(event, context):
     # TODO implement
-    bucket="family-face"
+    bucket="yourBucketName"
     model_arn='model arn'
     b64_r = event['picture']
     
@@ -53,11 +53,11 @@ def lambda_handler(event, context):
     '''
     # sending email using AWS IoT and AWS SNS
     # s3 upload 
-    bucket_name='stranger-face'
+    bucket_name='bucketName2'
     now = datetime.now()
     #bucket name where you want to upload image
-    file_name="%d%02d%02d_%02d%02d%02d"%(now.year, now.month, now.day, now.hour, now.minute, now.second)
-    s3.upload_file(imgtempname,bucket_name, file_name, ExtraArgs={'ACL':'public-read',"ContentType": 'image/jpeg'})
+    file_name="yourFileName"
+    s3.upload_file(imgtempname,bucket_name, file_name, ExtraArgs={"ContentType": 'image/jpeg'})
     s3_url = "https://"+bucket_name+".s3.ap-northeast-2.amazonaws.com/"+file_name
     
     # publish stranger
@@ -108,7 +108,7 @@ def lambda_handler(event, context):
     str_cid_name          = 'unregistered01' #cid 태그.
     emailHTMLImageContent = EmailHTMLImageContent(str_subject, str_image_file_name, str_cid_name, template, template_params)
     
-    str_from_email_addr = 'aws_iot@naver.com' # 발신자 [이메일 만듬.]
+    str_from_email_addr = 'Service@Email.Sender' # 발신자 [이메일 만듬.]
     # Place User's email here
     str_to_eamil_addrs  = ['userEmailHere@EmailDomainHere.com'] # 수신자리스트 
     email_send.send_message(emailHTMLImageContent, str_from_email_addr, str_to_eamil_addrs)
