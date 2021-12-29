@@ -58,7 +58,7 @@ class EmailSender:
     def send_message(self, emailContent, str_from_email_addr, str_to_eamil_addrs):
         """e메일을 발송한다 """
         cc = emailContent.get_message(str_from_email_addr, str_to_eamil_addrs)
-        self.ss.login('aws_iot@naver.com','iloveprofessor')
+        self.ss.login('emailID','emailPW')
         self.ss.send_message(cc, from_addr=str_from_email_addr, to_addrs=str_to_eamil_addrs)
         del cc
 
@@ -101,5 +101,5 @@ str_cid_name          = 'unregistered01' #cid 태그.
 emailHTMLImageContent = EmailHTMLImageContent(str_subject, str_image_file_name, str_cid_name, template, template_params)
 
 str_from_email_addr = 'aws_iot@naver.com' # 발신자 [이메일 만듬.]
-str_to_eamil_addrs  = ['sjkwon619@naver.com'] # 수신자리스트 
+str_to_eamil_addrs  = [''] # 수신자리스트 
 email_send.send_message(emailHTMLImageContent, str_from_email_addr, str_to_eamil_addrs)
