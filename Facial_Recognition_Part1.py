@@ -4,7 +4,7 @@ import boto3
 
 Access_key_id = 'YourIdHere'
 Access_secret_key = 'YourKeyHere'
-bucket_id = 'family-face'
+bucket_id = 'YourBucketName'
 
 face_classifier = cv2.CascadeClassifier('haarcascade_frontalface_default.xml')
 
