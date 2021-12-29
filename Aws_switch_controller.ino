@@ -18,7 +18,7 @@ WiFiServer server(80);
 
 // AWS IoT
 AWS_IOT testButton;
-char HOST_ADDRESS[] = "a3rrs47k7tk6a-ats.iot.ap-northeast-2.amazonaws.com"; 
+char HOST_ADDRESS[] = "AccesssPointAddressHere"; 
 char CLIENT_ID[] = "con-server";
 char pTOPIC_NAME[] = "$aws/things/light_switch/shadow/update"; // publish
 char payload[512];
