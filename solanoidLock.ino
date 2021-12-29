@@ -3,8 +3,8 @@
 
 AWS_IOT SecurePermission;
 
-const char* ssid = "HelloWirelessDCD3";
-const char* password = "";
+const char* ssid = "WiFiID";
+const char* password = "WiFiPW";
 char HOST_ADDRESS[] = "AccessPointIDHere"; 
 char CLIENT_ID[] = "sungjae";
 char sTOPIC_NAME[] = "$aws/things/AWS_smartlock/shadow/update/delta"; // subscribe topic name
